@@ -142,19 +142,34 @@ static NSDictionary *SPKSettingsLockSection(void) {
                         @"1. Quick Settings Access opens settings when long pressing the Home tab or the next visible tab if the Home tab is hidden.\n"
                         @"5. Reset Safe Startup Mode clears failed-launch counters and temporary hook suppression."),
         SPKSettingsLockSection(),
-        SPKTopicSection(@"Instagram", @[
-            [SPKSetting switchCellWithTitle:@"Hide TestFlight Popup"
-                                defaultsKey:@"tools_hide_testflight_popup"
-                            requiresRestart:YES],
-            [SPKSetting switchCellWithTitle:@"Fix Duplicate Notifications"
-                                defaultsKey:@"tools_fix_duplicate_notifications"],
-            [SPKSetting switchCellWithTitle:@"Disable Safe Mode"
-                                defaultsKey:@"tools_disable_safe_mode"],
-        ],
-                        @"1. Suppresses the Instagram Beta update popup.\n"
-                        @"2. Drops the duplicate in-app banner sideloaded Instagram posts while the notification extension is already delivering the same push. Only acts while the app is foregrounded.\n"
-                        @"3. Makes Instagram not reset settings after subsequent crashes. Use at your own risk."),
     ]];
+
+    // The TestFlight/Beta popup only appears on sideloaded (re-signed) installs.
+    // On jailbroken installs Instagram runs off its genuine App Store receipt, so
+    // the nag never shows — hide the toggle there rather than expose a no-op.
+    NSMutableArray *instagramCells = [NSMutableArray array];
+#if SPK_SIDELOAD
+    [instagramCells addObject:[SPKSetting switchCellWithTitle:@"Hide TestFlight Popup"
+                                                  defaultsKey:@"tools_hide_testflight_popup"
+                                              requiresRestart:YES]];
+#endif
+    [instagramCells addObject:[SPKSetting switchCellWithTitle:@"Fix Duplicate Notifications"
+                                                  defaultsKey:@"tools_fix_duplicate_notifications"]];
+    [instagramCells addObject:[SPKSetting switchCellWithTitle:@"Disable Safe Mode"
+                                                  defaultsKey:@"tools_disable_safe_mode"]];
+
+#if SPK_SIDELOAD
+    NSString *instagramFooter =
+        @"1. Suppresses the Instagram Beta update popup.\n"
+        @"2. Drops the duplicate in-app banner sideloaded Instagram posts while the notification extension is already delivering the same push. Only acts while the app is foregrounded.\n"
+        @"3. Makes Instagram not reset settings after subsequent crashes. Use at your own risk.";
+#else
+    NSString *instagramFooter =
+        @"1. Drops the duplicate in-app banner sideloaded Instagram posts while the notification extension is already delivering the same push. Only acts while the app is foregrounded.\n"
+        @"2. Makes Instagram not reset settings after subsequent crashes. Use at your own risk.";
+#endif
+
+    [sections addObject:SPKTopicSection(@"Instagram", instagramCells, instagramFooter)];
 
     return SPKTopicNavigationSetting(@"Tools", @"toolbox", 24.0, sections);
 }

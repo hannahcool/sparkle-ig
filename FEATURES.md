@@ -390,7 +390,7 @@ clearing, and more.
 - **Enable Settings Passcode Lock** + **Change Settings Passcode**: Uses an independent keychain-backed passcode and Face ID / Touch ID unlock. Protects full Settings and topic sheets opened from action buttons; Settings remains unlocked until its modal is dismissed.
 
 ### Instagram
-- **Hide TestFlight Popup**: Suppresses the Instagram Beta update popup. **(restart)**
+- **Hide TestFlight Popup**: Suppresses the Instagram Beta update popup. On by default and only shown on sideloaded builds (hidden on jailbroken installs, where the nag never appears). **(restart)**
 - **Fix Duplicate Notifications**: Drops the duplicate in-app banner sideloaded Instagram posts while the notification extension is already delivering the same push. Only acts while the app is foregrounded.
 - **Disable Safe Mode**: Prevents Instagram from resetting settings after repeated crashes (use with care).
 
