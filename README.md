@@ -4,11 +4,9 @@
 
 # Sparkle for Instagram
 
-*Bring the spark back to Instagram*
+`v1.0.0` · Tested on versions **437.2.0** and **410.1.0**
 
-`v1.0.0` · Tested on versions **437.1.0** and **410.1.0**
-
-[📣 Telegram Channel](https://t.me/sparkle_ig) · [💬 Chat & Support](https://example.com) · [📥 Releases](https://github.com/efibalogh/sparkle-ig/releases/latest) · [🐛 Issues](https://github.com/efibalogh/sparkle-ig/issues/new/choose) · [☕ Donate](https://ko-fi.com/sparkle_ig)
+[📣 Telegram Channel](https://t.me/sparkle_ig) · [💬 Chat & Support](https://t.me/+f-Xo21HnfCY3NmE0) · [📥 Releases](https://github.com/efibalogh/sparkle-ig/releases/latest) · [🐛 Issues](https://github.com/efibalogh/sparkle-ig/issues/new/choose) · [☕ Donate](https://ko-fi.com/sparkle_ig)
 
 </div>
 
@@ -16,7 +14,7 @@
 
 > [!NOTE]
 > - To open Sparkle's settings, see [Opening Sparkle Settings](#opening-sparkle-settings).
-> - Releases and announcements go out on the [Telegram channel](https://t.me/sparkle_ig); questions and help happen in the [chat group](https://example.com).
+> - Releases and announcements go out on the [Telegram channel](https://t.me/sparkle_ig); questions and help happen in the [chat group](https://t.me/+f-Xo21HnfCY3NmE0).
 > - Feature request or bug report? [Open an issue](https://github.com/efibalogh/sparkle-ig/issues/new/choose).
 
 ## What is Sparkle?
@@ -79,7 +77,7 @@ For the full list of features, check out [`FEATURES.md`](FEATURES.md).
 ### Jailbroken
 
 1. Download the rootless or rootful `.deb` from [Releases](https://github.com/efibalogh/sparkle-ig/releases/latest).
-2. Install it in Sileo/Zebra (or `Depiction`-add via a package manager), then respring.
+2. Open the `.deb` in Sileo/Zebra (or install it with `dpkg -i` over SSH), then respring.
 
 ### Build it yourself
 
@@ -195,6 +193,7 @@ Sparkle takes a lot of time to develop and maintain as Instagram changes constan
 - [**Ryuk** • RyukGram](https://github.com/faroukbmiled): code, inspiration, and help.
 - [**@n3d1117** • InstaSane](https://github.com/n3d1117/InstaSane): the Following-feed mode.
 - [**@asdfzxcvbn** • zxPluginsInject / ipapatch / cyan](https://github.com/asdfzxcvbn): tooling and fixes for sideloaded installs.
+- [**@BillyCurtis** • OpenInstagramSafariExtension](https://github.com/BillyCurtis/OpenInstagramSafariExtension): open Instagram links in Safari in the sideloaded IPA.
 
 ## License
 
