@@ -1356,16 +1356,63 @@ static void SPKFFmpegRunMergeAttempts(NSArray<NSDictionary<NSString *, id> *> *a
 
 - (void)reloadFiles {
     self.files = SPKFFmpegSortedLogFiles().reverseObjectEnumerator.allObjects ?: @[];
-    self.tableView.backgroundView = nil;
-    if (self.files.count == 0) {
-        UILabel *label = [[UILabel alloc] init];
-        label.text = @"No encoding logs yet.";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [SPKUtils SPKColor_InstagramSecondaryText];
-        label.numberOfLines = 0;
-        self.tableView.backgroundView = label;
-    }
+    self.tableView.backgroundView = self.files.count == 0 ? [self emptyStateView] : nil;
     [self.tableView reloadData];
+}
+
+- (UIView *)emptyStateView {
+    UIView *container = [UIView new];
+
+    UIView *content = [UIView new];
+    content.translatesAutoresizingMaskIntoConstraints = NO;
+    [container addSubview:content];
+
+    UIImageView *icon = [[UIImageView alloc] initWithImage:[SPKAssetUtils instagramIconNamed:@"empty" pointSize:96 renderingMode:UIImageRenderingModeAlwaysTemplate]];
+    icon.translatesAutoresizingMaskIntoConstraints = NO;
+    icon.contentMode = UIViewContentModeScaleAspectFit;
+    icon.tintColor = [SPKUtils SPKColor_InstagramTertiaryText];
+    [content addSubview:icon];
+
+    UILabel *title = [UILabel new];
+    title.translatesAutoresizingMaskIntoConstraints = NO;
+    title.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+    title.textColor = [SPKUtils SPKColor_InstagramPrimaryText];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.numberOfLines = 0;
+    title.text = @"No encoding logs yet";
+    [content addSubview:title];
+
+    UILabel *subtitle = [UILabel new];
+    subtitle.translatesAutoresizingMaskIntoConstraints = NO;
+    subtitle.font = [UIFont systemFontOfSize:14];
+    subtitle.textColor = [SPKUtils SPKColor_InstagramSecondaryText];
+    subtitle.textAlignment = NSTextAlignmentCenter;
+    subtitle.numberOfLines = 0;
+    subtitle.text = @"FFmpeg runs will appear here after merge attempts.";
+    [content addSubview:subtitle];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [content.centerXAnchor constraintEqualToAnchor:container.centerXAnchor],
+        [content.centerYAnchor constraintEqualToAnchor:container.centerYAnchor constant:-30],
+        [content.leadingAnchor constraintGreaterThanOrEqualToAnchor:container.leadingAnchor constant:40],
+        [content.trailingAnchor constraintLessThanOrEqualToAnchor:container.trailingAnchor constant:-40],
+
+        [icon.topAnchor constraintEqualToAnchor:content.topAnchor],
+        [icon.centerXAnchor constraintEqualToAnchor:content.centerXAnchor],
+        [icon.widthAnchor constraintEqualToConstant:72],
+        [icon.heightAnchor constraintEqualToConstant:72],
+
+        [title.topAnchor constraintEqualToAnchor:icon.bottomAnchor constant:18],
+        [title.leadingAnchor constraintEqualToAnchor:content.leadingAnchor],
+        [title.trailingAnchor constraintEqualToAnchor:content.trailingAnchor],
+
+        [subtitle.topAnchor constraintEqualToAnchor:title.bottomAnchor constant:6],
+        [subtitle.leadingAnchor constraintEqualToAnchor:content.leadingAnchor],
+        [subtitle.trailingAnchor constraintEqualToAnchor:content.trailingAnchor],
+        [subtitle.bottomAnchor constraintEqualToAnchor:content.bottomAnchor],
+    ]];
+
+    return container;
 }
 
 - (void)shareAllTapped {
@@ -1410,6 +1457,9 @@ static void SPKFFmpegRunMergeAttempts(NSArray<NSDictionary<NSString *, id> *> *a
     NSNumber *size = attributes[NSFileSize];
 
     cell.backgroundColor = [SPKUtils SPKColor_InstagramSecondaryBackground];
+    UIView *selectedBackground = [[UIView alloc] initWithFrame:CGRectZero];
+    selectedBackground.backgroundColor = [SPKUtils SPKColor_InstagramPressedBackground];
+    cell.selectedBackgroundView = selectedBackground;
     cell.textLabel.textColor = [SPKUtils SPKColor_InstagramPrimaryText];
     cell.detailTextLabel.textColor = [SPKUtils SPKColor_InstagramSecondaryText];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
