@@ -119,6 +119,8 @@ static NSDictionary *SPKSettingsLockSection(void) {
             [SPKSetting switchCellWithTitle:@"Quick Settings Access"
                                 defaultsKey:@"tools_settings_shortcut"
                             requiresRestart:YES],
+            [SPKSetting switchCellWithTitle:@"Shortcut Haptics"
+                                defaultsKey:@"tools_shortcut_haptics"],
             [SPKSetting switchCellWithTitle:@"Show Settings on App Launch"
                                 defaultsKey:@"tools_open_settings_on_launch"],
             [SPKSetting switchCellWithTitle:@"Disable All Settings"
@@ -140,7 +142,7 @@ static NSDictionary *SPKSettingsLockSection(void) {
                                      }],
         ],
                         @"1. Quick Settings Access opens settings when long pressing the Home tab or the next visible tab if the Home tab is hidden.\n"
-                        @"5. Reset Safe Startup Mode clears failed-launch counters and temporary hook suppression."),
+                        @"6. Reset Safe Startup Mode clears failed-launch counters and temporary hook suppression."),
         SPKSettingsLockSection(),
     ]];
 

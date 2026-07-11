@@ -394,6 +394,7 @@ clearing, and more.
 
 ### Tweak
 - **Quick Settings Access**: Long-press the Home tab to open Sparkle Settings. **(restart)** If the Home tab is hidden or claimed by the Gallery shortcut, the long-press automatically falls back to another visible tab so Settings is always reachable.
+- **Shortcut Haptics**: Light haptic feedback when opening Settings / Gallery.
 - **Show Settings on App Launch**.
 - **Disable All Settings**: Master kill switch; only Settings access remains. **(restart)**
 - **Reset Onboarding Completion State**.

@@ -26,6 +26,7 @@ static NSDictionary *SPKBootstrapDefaults(void) {
         @"interface_hide_profile_tab" : @(NO),
         @"interface_open_clipboard_link" : @(YES),
         @"tools_settings_shortcut" : @(YES),
+        @"tools_shortcut_haptics" : @(YES),
         @"gallery_quick_access_tab" : @"direct-inbox-tab",
         @"tools_open_settings_on_launch" : @(NO),
         @"tools_disable_all" : @(NO),
