@@ -69,6 +69,7 @@
                                             @"•  App icon\n"
                                             @"•  Appearance & Liquid Glass\n"
                                             @"•  Tab bar order & visibility\n"
+                                            @"•  Quick access shortcuts (Settings & Gallery)\n"
                                             @"•  Main feed mode (For You / Following)\n"
                                             @"•  Disable video autoplay\n"
                                             @"•  Hide UI on capture\n"

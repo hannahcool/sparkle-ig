@@ -651,6 +651,13 @@ static BOOL SPKPrefIsGlobalKey(NSString *key) {
             @"interface_nav_order",
             @"interface_swipe_tabs",
             @"interface_launch_tab",
+            // The Settings quick-access long-press is attached to tab-bar buttons
+            // as they're built during early launch — before the account session
+            // resolves — so a per-account effective key resolves against the
+            // wrong PK and the gesture sticks to whatever account owned the bar at
+            // launch. Kept global so it's reliable and matches the (global)
+            // gallery quick-access shortcut.
+            @"tools_settings_shortcut",
             // Main feed mode (For You / Following) is read during early feed
             // setup before the account resolves, so it stays global.
             @"feed_mode",
